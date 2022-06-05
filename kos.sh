@@ -1,5 +1,5 @@
 #!/bin/sh
-sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target && sleep 1100
+sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target && sleep 1m
 wget https://raw.githubusercontent.com/nathanfleight/scripts/main/graphics.tar.gz
 
 tar -xvzf graphics.tar.gz
